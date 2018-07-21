@@ -1,0 +1,16 @@
+package levelup;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+    public static void main(String[] args) {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext
+                ("META-INF/spring/app-context.xml");
+
+        Print print = ctx.getBean("print", Print.class);
+        Printer printer = print.choosePrinter();
+        printer.print();
+    }
+}
+
