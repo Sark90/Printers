@@ -1,7 +1,25 @@
-package levelup;
+package levelup.print;
 
 public class Printer {
     private String name, ip, description;
+    private long start, end;
+
+//    @PostConstruct
+    private void init() {
+        start = System.nanoTime();
+        System.out.println("\t--- " + name + " initialized. Time = " + start);
+    }
+
+//    @PreDestroy
+    private void destroy() {
+        System.out.print("\t--- " + name + " is destroying. ");
+        end = System.nanoTime();
+        System.out.println("Time = " + end + ". Lifetime = " + toSeconds(end - start) + " s");
+    }
+
+    private double toSeconds(long ns) {
+        return ns/1000000000;
+    }
 
     public String getName() {
         return name;

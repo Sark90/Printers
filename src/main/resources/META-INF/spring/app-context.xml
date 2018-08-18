@@ -7,45 +7,36 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!--    <context:component-scan
-            base-package="levelup"/>-->
-
-    <bean id="printer1" class="levelup.Printer"
+    <bean id="printer1" class="levelup.print.Printer" init-method="init" destroy-method="destroy"
           p:name="Canon"
           p:ip="192.168.1.100"
           p:description="1st floor"/>
 
-    <bean id="printer2" class="levelup.Printer"
+    <bean id="printer2" class="levelup.print.Printer" init-method="init" destroy-method="destroy"
           p:name="HP"
           p:ip="192.168.1.103"
           p:description="Director's office"/>
 
-    <bean id="printer3" class="levelup.Printer"
+    <bean id="printer3" class="levelup.print.Printer" init-method="init" destroy-method="destroy"
           p:name="Epson"
           p:ip="192.168.1.112"
           p:description="Accounting department"/>
 
-    <bean id="printersmap" class="org.springframework.beans.factory.config.MapFactoryBean">
-        <property name="sourceMap">
+
+    <bean id="print" class="levelup.print.Print">
+        <!--<property name="printer" value="null"/>-->
+        <property name="printersmap">
             <map>
                 <entry key="1" value-ref="printer1"/>
                 <entry key="2" value-ref="printer2"/>
                 <entry key="3" value-ref="printer3"/>
             </map>
         </property>
-
     </bean>
 
-    <bean id="print" class="levelup.Print">
-<!--          <property name="printer" ref="printer"/>-->
+    <bean id="timer" class="levelup.aspect.MyTimer">
+        <!--<property name="start" value="0"/>
+        <property name="end" value="0"/>-->
     </bean>
-<!--
-
-    <util:map id="printersmap" map-class="java.util.HashMap">
-        <entry key="1" value-ref="printer1"/>
-        <entry key="2" value-ref="printer2"/>
-        <entry key="3" value-ref="printer3"/>
-    </util:map>
--->
 
 </beans>
