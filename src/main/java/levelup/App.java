@@ -22,7 +22,6 @@ public class App {
 
         pf.setTarget(printer);
         Printer proxy2 = (Printer) pf.getProxy();
-        //printer.print();
         System.out.println();
         proxy2.print();
 
